@@ -1,10 +1,8 @@
-const technologies = ['Python', 'PyTorch', 'Transformers', 'React', 'FastAPI', 'PostgreSQL', 'Docker']
-
-function TechnologiesSection() {
+function TechnologiesSection({ technologies }) {
   return (
     <section className="rounded-3xl border border-white/10 bg-slate-900/60 p-8 md:p-10">
-      <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Technologies Used</p>
-      <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">Built with modern AI + web stack</h2>
+      <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Kullanılan Teknolojiler</p>
+      <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">Modern yapay zeka ve web yığını</h2>
       <div className="mt-7 flex flex-wrap gap-3">
         {technologies.map((tech) => (
           <span

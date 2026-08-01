@@ -1,16 +1,8 @@
-const features = [
-  { title: 'News Sentiment Analysis', desc: 'Extracts polarity and confidence from financial headlines and reports.', icon: '📰' },
-  { title: 'AI-based Prediction', desc: 'Uses learned sentiment patterns to support market direction forecasting.', icon: '🤖' },
-  { title: 'Financial Data Processing', desc: 'Cleans and combines market data with text-based signals.', icon: '📈' },
-  { title: 'Real-time Pipeline', desc: 'Continuously ingests and evaluates incoming data streams.', icon: '⚡' },
-  { title: 'Visualization Dashboard', desc: 'Displays trends, signal strength, and market outlook clearly.', icon: '📊' },
-]
-
-function FeaturesSection() {
+function FeaturesSection({ features }) {
   return (
     <section>
-      <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Features</p>
-      <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">Core capabilities</h2>
+      <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Özellikler</p>
+      <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">Temel yetenekler</h2>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {features.map((feature) => (
           <article

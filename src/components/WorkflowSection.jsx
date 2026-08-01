@@ -1,10 +1,8 @@
-const steps = ['News Sources', 'NLP Model', 'Sentiment Engine', 'Prediction System', 'Dashboard']
-
-function WorkflowSection() {
+function WorkflowSection({ steps }) {
   return (
     <section className="rounded-3xl border border-white/10 bg-slate-900/60 p-8 md:p-10">
-      <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Architecture / Workflow</p>
-      <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">Pipeline overview</h2>
+      <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Mimari / İş Akışı</p>
+      <h2 className="mt-3 text-3xl font-semibold text-white md:text-4xl">Pipeline özeti</h2>
       <div className="mt-8 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         {steps.map((step, index) => (
           <div key={step} className="flex items-center gap-3 md:flex-1">

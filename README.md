@@ -1,4 +1,4 @@
-# FinSight AI Landing Page (Draft)
+# LazarusFinance Landing Page
 
 Draft, editable landing page template for a Computer Engineering graduation project focused on:
 
