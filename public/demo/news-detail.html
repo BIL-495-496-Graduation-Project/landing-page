@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LazarusFinance - Haber Detay</title>
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --sidebar: #111827;
+      --sidebar-soft: #1f2937;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --positive: #15803d;
+      --negative: #b91c1c;
+      --neutral: #64748b;
+      --warning-bg: #fff7ed;
+      --warning-border: #fed7aa;
+      --warning-text: #9a3412;
+      --danger-bg: #fef2f2;
+      --danger-border: #fecaca;
+      --danger-text: #991b1b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: var(--sidebar);
+      color: white;
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-item {
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: #d1d5db;
+      font-size: 14px;
+    }
+
+    .nav-item.active {
+      background: var(--sidebar-soft);
+      color: white;
+      font-weight: 600;
+    }
+
+    .sidebar-note {
+      margin-top: auto;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .main {
+      flex: 1;
+      padding: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.25;
+      max-width: 880px;
+    }
+
+    .page-description {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 760px;
+      line-height: 1.5;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .button,
+    .secondary-button {
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      white-space: nowrap;
+      font-weight: 700;
+      border: 1px solid var(--accent);
+      cursor: default;
+    }
+
+    .button {
+      background: var(--accent);
+      color: white;
+    }
+
+    .secondary-button {
+      background: white;
+      color: var(--accent);
+    }
+
+    .notice {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      color: var(--warning-text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .meta-box {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: #f8fafc;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+
+    .meta-value {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .badge.blue {
+      background: var(--accent-soft);
+      color: #1d4ed8;
+    }
+
+    .badge.green {
+      background: #dcfce7;
+      color: var(--positive);
+    }
+
+    .badge.red {
+      background: #fee2e2;
+      color: var(--negative);
+    }
+
+    .badge.gray {
+      background: #f1f5f9;
+      color: var(--neutral);
+    }
+
+    .badge.orange {
+      background: #ffedd5;
+      color: #c2410c;
+    }
+
+    .article-box {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: #ffffff;
+    }
+
+    .article-title {
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+
+    .article-text {
+      color: #374151;
+      font-size: 14px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .side-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .score-box {
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 18px;
+      background: linear-gradient(180deg, #ffffff, #f8fafc);
+    }
+
+    .score-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .score-value {
+      font-size: 44px;
+      font-weight: 800;
+      color: var(--positive);
+      margin-bottom: 8px;
+    }
+
+    .score-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .info-label {
+      color: var(--muted);
+    }
+
+    .info-value {
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .analysis-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: #ffffff;
+    }
+
+    .analysis-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .analysis-value {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .analysis-desc {
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .warning-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .warning-item {
+      border-radius: 12px;
+      padding: 12px;
+      font-size: 13px;
+      line-height: 1.5;
+      border: 1px solid var(--warning-border);
+      background: var(--warning-bg);
+      color: var(--warning-text);
+    }
+
+    .danger-item {
+      border-color: var(--danger-border);
+      background: var(--danger-bg);
+      color: var(--danger-text);
+    }
+
+    .flow-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .flow-action {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: #ffffff;
+    }
+
+    .flow-title {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .flow-desc {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .flow-button {
+      width: 100%;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: white;
+      border-radius: 10px;
+      padding: 9px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1100px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .main {
+        padding: 18px;
+      }
+
+      .topbar {
+        flex-direction: column;
+      }
+
+      .topbar-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+      }
+
+      .meta-grid,
+      .analysis-grid,
+      .flow-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-title">LazarusFinance</div>
+        <div class="brand-subtitle">
+          Haber-piyasa ilişkisi için yapay zekâ destekli analiz paneli
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item">Haber Akışı</div>
+        <div class="nav-item active">Haber Detay</div>
+        <div class="nav-item">Olay Penceresi Analizi</div>
+        <div class="nav-item">Karşılaştırmalı Göstergeler</div>
+      </nav>
+
+      <div class="sidebar-note">
+        Haber detayı ekranı, kullanıcının tek bir haberin analiz sonucunu anlaması için tasarlanmıştır.
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="breadcrumb">Haber Akışı / Haber Detay</div>
+          <h1 class="page-title">Bir şirket yeni yatırım planına ilişkin KAP bildirimi yayımladı</h1>
+          <p class="page-description">
+            Bu ekran, seçilen haberin veya KAP bildiriminin metinsel analiz sonucunu, ilişkili finansal göstergesini ve etki skorunu gösterir.
+          </p>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="secondary-button">Haber Akışına Dön</button>
+          <button class="button">Olay Penceresini Aç</button>
+        </div>
+      </header>
+
+      <section class="notice">
+        <strong>Uyarı:</strong> Bu sayfadaki kategori, duygu sonucu ve etki skoru yatırım tavsiyesi değildir.
+        Sistem kesin fiyat tahmini veya nedensellik iddiası üretmez.
+      </section>
+
+      <section class="content-grid">
+        <div>
+          <section class="card">
+            <h2 class="section-title">Haber Bilgileri</h2>
+
+            <div class="meta-grid">
+              <div class="meta-box">
+                <div class="meta-label">Kaynak</div>
+                <div class="meta-value">KAP</div>
+              </div>
+
+              <div class="meta-box">
+                <div class="meta-label">Yayın Zamanı</div>
+                <div class="meta-value">04.07.2026 18:20</div>
+              </div>
+
+              <div class="meta-box">
+                <div class="meta-label">İlgili Gösterge / Sektör</div>
+                <div class="meta-value">Sektör Endeksi</div>
+              </div>
+
+              <div class="meta-box">
+                <div class="meta-label">Analiz Durumu</div>
+                <div class="meta-value">Hazır</div>
+              </div>
+            </div>
+
+            <div class="badge-row">
+              <span class="badge blue">Şirket/KAP Bildirimi</span>
+              <span class="badge green">Pozitif</span>
+              <span class="badge orange">3G olay penceresi hazır</span>
+            </div>
+
+            <div class="article-box">
+              <div class="article-title">
+                Bir şirket yeni yatırım planına ilişkin KAP bildirimi yayımladı
+              </div>
+
+              <p class="article-text">
+                Şirket tarafından yayımlanan bildirimde, yeni yatırım planı kapsamında üretim kapasitesinin artırılması
+                ve belirli operasyonel süreçlerin genişletilmesi hedeflendiği açıklanmıştır. Bildirim, sistem tarafından
+                şirket/KAP bildirimi kategorisinde değerlendirilmiş ve ilgili sektör endeksiyle ilişkilendirilmiştir.
+                Bu içerik demo ekranında temsilî olarak gösterilmektedir.
+              </p>
+            </div>
+          </section>
+
+          <section class="analysis-grid">
+            <div class="analysis-card">
+              <div class="analysis-label">Kategori Sonucu</div>
+              <div class="analysis-value">KAP Bildirimi</div>
+              <div class="analysis-desc">
+                Haber, şirket veya piyasa bildirimi niteliğinde değerlendirilmiştir.
+              </div>
+            </div>
+
+            <div class="analysis-card">
+              <div class="analysis-label">Duygu Sonucu</div>
+              <div class="analysis-value" style="color: #15803d;">Pozitif</div>
+              <div class="analysis-desc">
+                Model, haber metninin genel tonunu pozitif olarak etiketlemiştir.
+              </div>
+            </div>
+
+            <div class="analysis-card">
+              <div class="analysis-label">İlgili Gösterge</div>
+              <div class="analysis-value">Sektör Endeksi</div>
+              <div class="analysis-desc">
+                Bildirim, ilgili sektör hareketiyle birlikte incelenebilir.
+              </div>
+            </div>
+          </section>
+
+          <section class="card" style="margin-top: 18px;">
+            <h2 class="section-title">Sonraki Analiz Adımları</h2>
+
+            <div class="flow-actions">
+              <div class="flow-action">
+                <div class="flow-title">Olay Penceresi</div>
+                <div class="flow-desc">
+                  Haberin yayın zamanı çevresindeki 1 günlük veya 3 günlük piyasa hareketini inceleyin.
+                </div>
+                <button class="flow-button">Grafiği Aç</button>
+              </div>
+
+              <div class="flow-action">
+                <div class="flow-title">Karşılaştırmalı Gösterge</div>
+                <div class="flow-desc">
+                  Altın fiyatını ana analiz hedefi değil, ek piyasa bağlamı olarak karşılaştırın.
+                </div>
+                <button class="flow-button">Altın ile Karşılaştır</button>
+              </div>
+
+              <div class="flow-action">
+                <div class="flow-title">Benzer Haberler</div>
+                <div class="flow-desc">
+                  Aynı kategoriye veya aynı göstergeye bağlı diğer haberleri listeleyin.
+                </div>
+                <button class="flow-button">Benzerlerini Gör</button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="side-stack">
+          <section class="card">
+            <h2 class="section-title">Etki Skoru</h2>
+
+            <div class="score-box">
+              <div class="score-label">Yorumlanabilir haber-piyasa özeti</div>
+              <div class="score-value">+0.36</div>
+              <div class="score-note">
+                Etki skoru; kategori, duygu sonucu ve haber sonrası gözlemlenen kısa vadeli piyasa hareketini özetler.
+                Yatırım sinyali değildir.
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2 class="section-title">Analiz Özeti</h2>
+
+            <div class="info-list">
+              <div class="info-row">
+                <span class="info-label">Haber Türü</span>
+                <span class="info-value">KAP Bildirimi</span>
+              </div>
+
+              <div class="info-row">
+                <span class="info-label">Duygu</span>
+                <span class="info-value" style="color: #15803d;">Pozitif</span>
+              </div>
+
+              <div class="info-row">
+                <span class="info-label">İlişkili Gösterge</span>
+                <span class="info-value">Sektör Endeksi</span>
+              </div>
+
+              <div class="info-row">
+                <span class="info-label">Olay Penceresi</span>
+                <span class="info-value">1G / 3G hazır</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2 class="section-title">Uyarılar ve Sınırlar</h2>
+
+            <div class="warning-list">
+              <div class="warning-item">
+                Sistem, haberin fiyat hareketine kesin olarak sebep olduğunu söylemez.
+              </div>
+
+              <div class="warning-item">
+                Etki skoru “al”, “sat” veya “tut” önerisi olarak yorumlanmamalıdır.
+              </div>
+
+              <div class="warning-item danger-item">
+                Demo ekranındaki veri ve skorlar temsilidir; fonksiyonel analiz çıktısı değildir.
+              </div>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <p class="footer-note">
+        Bu ekran demo amaçlı hazırlanmış statik bir arayüz önizlemesidir. Haber metni ve etki skoru temsilî olarak gösterilmiştir.
+      </p>
+    </main>
+  </div>
+</body>
+</html>

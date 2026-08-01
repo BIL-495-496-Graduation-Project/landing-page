@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LazarusFinance - Haber Akışı</title>
+
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --sidebar: #111827;
+      --sidebar-soft: #1f2937;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --accent-soft: #dbeafe;
+      --positive: #15803d;
+      --negative: #b91c1c;
+      --neutral: #64748b;
+      --warning-bg: #fff7ed;
+      --warning-border: #fed7aa;
+      --warning-text: #9a3412;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: var(--sidebar);
+      color: white;
+      padding: 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .brand-title {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: #cbd5e1;
+      line-height: 1.4;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-item {
+      padding: 12px 14px;
+      border-radius: 10px;
+      color: #d1d5db;
+      font-size: 14px;
+    }
+
+    .nav-item.active {
+      background: var(--sidebar-soft);
+      color: white;
+      font-weight: 600;
+    }
+
+    .sidebar-note {
+      margin-top: auto;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .main {
+      flex: 1;
+      padding: 28px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 22px;
+    }
+
+    .page-title {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .page-description {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 760px;
+      line-height: 1.5;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .chip,
+    .button {
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .button {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+      font-weight: 600;
+    }
+
+    .warning {
+      background: var(--warning-bg);
+      border: 1px solid var(--warning-border);
+      color: var(--warning-text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      margin: -6px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .filter-group {
+      margin-bottom: 16px;
+    }
+
+    .filter-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    .input,
+    .select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--text);
+      background: white;
+    }
+
+    .filter-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .filter-actions button {
+      flex: 1;
+      border-radius: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      font-weight: 600;
+      cursor: default;
+    }
+
+    .apply {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent) !important;
+    }
+
+    .clear {
+      background: white;
+      color: var(--text);
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .result-count {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .sort-box {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .news-card {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: #ffffff;
+    }
+
+    .news-main {
+      min-width: 0;
+    }
+
+    .news-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #f1f5f9;
+      color: #475569;
+    }
+
+    .badge.blue {
+      background: var(--accent-soft);
+      color: #1d4ed8;
+    }
+
+    .badge.green {
+      background: #dcfce7;
+      color: var(--positive);
+    }
+
+    .badge.red {
+      background: #fee2e2;
+      color: var(--negative);
+    }
+
+    .badge.gray {
+      background: #f1f5f9;
+      color: var(--neutral);
+    }
+
+    .badge.orange {
+      background: #ffedd5;
+      color: #c2410c;
+    }
+
+    .news-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .news-desc {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .news-foot {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .news-side {
+      border-left: 1px solid var(--border);
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .side-label {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .side-value {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .detail-button {
+      width: 100%;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: white;
+      border-radius: 10px;
+      padding: 9px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .page {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .page.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+      font-weight: 700;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 1100px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .main {
+        padding: 18px;
+      }
+
+      .topbar,
+      .result-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .topbar-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .news-card {
+        grid-template-columns: 1fr;
+      }
+
+      .news-side {
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding-left: 0;
+        padding-top: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-title">LazarusFinance</div>
+        <div class="brand-subtitle">
+          Haber-piyasa ilişkisi için yapay zekâ destekli analiz paneli
+        </div>
+      </div>
+
+      <nav class="nav">
+        <div class="nav-item">Dashboard</div>
+        <div class="nav-item active">Haber Akışı</div>
+        <div class="nav-item">Haber Detay</div>
+        <div class="nav-item">Olay Penceresi Analizi</div>
+        <div class="nav-item">Karşılaştırmalı Göstergeler</div>
+      </nav>
+
+      <div class="sidebar-note">
+        Bu ekran demo amaçlıdır. Filtreler fonksiyonel olmak zorunda değildir; raporda arayüz akışını göstermek için kullanılacaktır.
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1 class="page-title">Haber Akışı ve Filtreleme</h1>
+          <p class="page-description">
+            KAP bildirimleri ile ekonomik, finansal ve siyasi haberleri tarih, kaynak, kategori, duygu sonucu ve ilişkili göstergeye göre filtreleyin.
+          </p>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="chip">Toplam kayıt: 248</div>
+          <button class="button">Yeni Verileri Tara</button>
+        </div>
+      </header>
+
+      <section class="warning">
+        <strong>Not:</strong> Haber listesinde gösterilen duygu sonucu ve etki skoru, yatırım tavsiyesi değildir.
+        Sistem yalnızca haber sonrası gözlemlenen kısa vadeli piyasa hareketlerini analiz etmeye yardımcı olur.
+      </section>
+
+      <section class="content-grid">
+        <aside class="card">
+          <h2 class="section-title">Filtreler</h2>
+          <p class="section-subtitle">
+            Kullanıcı haber akışını daraltarak ilgilendiği haberleri daha hızlı bulabilir.
+          </p>
+
+          <div class="filter-group">
+            <label class="filter-label">Tarih Başlangıcı</label>
+            <input class="input" type="date" value="2026-07-01" />
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Tarih Bitişi</label>
+            <input class="input" type="date" value="2026-07-05" />
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Kaynak</label>
+            <select class="select">
+              <option>Tüm kaynaklar</option>
+              <option>KAP</option>
+              <option>Finans haberleri</option>
+              <option>Ekonomi haberleri</option>
+              <option>Siyasi haberler</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Kategori</label>
+            <select class="select">
+              <option>Tüm kategoriler</option>
+              <option>Ekonomik</option>
+              <option>Finansal</option>
+              <option>Siyasi</option>
+              <option>Şirket/KAP Bildirimi</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Duygu Sonucu</label>
+            <select class="select">
+              <option>Tüm duygu sonuçları</option>
+              <option>Pozitif</option>
+              <option>Negatif</option>
+              <option>Nötr</option>
+              <option>Bilinmiyor</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">İlişkili Gösterge</label>
+            <select class="select">
+              <option>Tüm göstergeler</option>
+              <option>BIST100</option>
+              <option>Sektör Endeksi</option>
+              <option>USD/TRY</option>
+              <option>Altın - karşılaştırmalı gösterge</option>
+            </select>
+          </div>
+
+          <div class="filter-actions">
+            <button class="apply">Filtrele</button>
+            <button class="clear">Temizle</button>
+          </div>
+        </aside>
+
+        <section class="card">
+          <div class="result-header">
+            <div>
+              <h2 class="section-title">Haber Listesi</h2>
+              <div class="result-count">Gösterilen sonuç: 24 kayıt</div>
+            </div>
+
+            <div class="sort-box">
+              <span>Sıralama:</span>
+              <select class="select">
+                <option>En yeni önce</option>
+                <option>En eski önce</option>
+                <option>Etki skoruna göre</option>
+                <option>Model güven skoruna göre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="news-list">
+            <article class="news-card">
+              <div class="news-main">
+                <div class="news-meta">
+                  <span class="badge blue">Ekonomik</span>
+                  <span class="badge red">Negatif</span>
+                  <span class="badge gray">USD/TRY</span>
+                  <span class="badge orange">1G pencere hazır</span>
+                </div>
+
+                <div class="news-title">
+                  Merkez bankası faiz kararına ilişkin beklentiler güncellendi
+                </div>
+
+                <div class="news-desc">
+                  Haber, makroekonomik gelişme kategorisinde değerlendirilmiş ve USD/TRY göstergesiyle ilişkilendirilmiştir.
+                  Sistem haber sonrası hareketi nedensellik iddiası olmadan gösterecektir.
+                </div>
+
+                <div class="news-foot">
+                  <span>Kaynak: Ekonomi Haberleri</span>
+                  <span>Yayın zamanı: 05.07.2026 10:15</span>
+                  <span>Model güveni: 0.78</span>
+                </div>
+              </div>
+
+              <aside class="news-side">
+                <div>
+                  <div class="side-label">Etki Skoru</div>
+                  <div class="side-value">-0.42</div>
+                </div>
+
+                <div>
+                  <div class="side-label">Analiz Durumu</div>
+                  <div class="side-value">Hazır</div>
+                </div>
+
+                <button class="detail-button">Detayı Gör</button>
+              </aside>
+            </article>
+
+            <article class="news-card">
+              <div class="news-main">
+                <div class="news-meta">
+                  <span class="badge blue">Şirket/KAP Bildirimi</span>
+                  <span class="badge green">Pozitif</span>
+                  <span class="badge gray">Sektör Endeksi</span>
+                  <span class="badge orange">3G pencere hazır</span>
+                </div>
+
+                <div class="news-title">
+                  Bir şirket yeni yatırım planına ilişkin KAP bildirimi yayımladı
+                </div>
+
+                <div class="news-desc">
+                  Bildirim, şirket/KAP bildirimi kategorisinde değerlendirilmiş ve ilgili sektör endeksiyle eşleştirilmiştir.
+                </div>
+
+                <div class="news-foot">
+                  <span>Kaynak: KAP</span>
+                  <span>Yayın zamanı: 04.07.2026 18:20</span>
+                  <span>Model güveni: 0.84</span>
+                </div>
+              </div>
+
+              <aside class="news-side">
+                <div>
+                  <div class="side-label">Etki Skoru</div>
+                  <div class="side-value">+0.36</div>
+                </div>
+
+                <div>
+                  <div class="side-label">Analiz Durumu</div>
+                  <div class="side-value">Hazır</div>
+                </div>
+
+                <button class="detail-button">Detayı Gör</button>
+              </aside>
+            </article>
+
+            <article class="news-card">
+              <div class="news-main">
+                <div class="news-meta">
+                  <span class="badge blue">Siyasi</span>
+                  <span class="badge gray">Nötr</span>
+                  <span class="badge gray">BIST100</span>
+                  <span class="badge orange">Kısmi analiz</span>
+                </div>
+
+                <div class="news-title">
+                  Bölgesel gelişmelere ilişkin açıklamalar piyasa gündeminde
+                </div>
+
+                <div class="news-desc">
+                  Haber, genel piyasa göstergesi olarak BIST100 ile ilişkilendirilmiştir.
+                  Bazı piyasa verileri eksik olduğu için analiz kısmi olarak hazırlanmıştır.
+                </div>
+
+                <div class="news-foot">
+                  <span>Kaynak: Siyasi Haberler</span>
+                  <span>Yayın zamanı: 03.07.2026 09:45</span>
+                  <span>Model güveni: 0.61</span>
+                </div>
+              </div>
+
+              <aside class="news-side">
+                <div>
+                  <div class="side-label">Etki Skoru</div>
+                  <div class="side-value">Hesaplanamadı</div>
+                </div>
+
+                <div>
+                  <div class="side-label">Analiz Durumu</div>
+                  <div class="side-value">Eksik veri</div>
+                </div>
+
+                <button class="detail-button">Detayı Gör</button>
+              </aside>
+            </article>
+
+            <article class="news-card">
+              <div class="news-main">
+                <div class="news-meta">
+                  <span class="badge blue">Finansal</span>
+                  <span class="badge green">Pozitif</span>
+                  <span class="badge gray">BIST100</span>
+                  <span class="badge gray">Altın: karşılaştırmalı</span>
+                </div>
+
+                <div class="news-title">
+                  Bankacılık sektörü ve genel piyasa beklentilerine ilişkin değerlendirme yayımlandı
+                </div>
+
+                <div class="news-desc">
+                  Haber BIST100 ve sektör endeksiyle ilişkilendirilmiştir. Altın fiyatı, ana analiz hedefi olarak değil,
+                  karşılaştırmalı piyasa göstergesi olarak kullanılabilir.
+                </div>
+
+                <div class="news-foot">
+                  <span>Kaynak: Finans Haberleri</span>
+                  <span>Yayın zamanı: 02.07.2026 15:10</span>
+                  <span>Model güveni: 0.73</span>
+                </div>
+              </div>
+
+              <aside class="news-side">
+                <div>
+                  <div class="side-label">Etki Skoru</div>
+                  <div class="side-value">+0.21</div>
+                </div>
+
+                <div>
+                  <div class="side-label">Analiz Durumu</div>
+                  <div class="side-value">Hazır</div>
+                </div>
+
+                <button class="detail-button">Detayı Gör</button>
+              </aside>
+            </article>
+          </div>
+
+          <div class="pagination">
+            <div class="page active">1</div>
+            <div class="page">2</div>
+            <div class="page">3</div>
+            <div class="page">...</div>
+            <div class="page">8</div>
+          </div>
+        </section>
+      </section>
+
+      <p class="footer-note">
+        Bu ekran demo amaçlı hazırlanmış statik bir arayüz önizlemesidir. Filtreleme alanları ve haber kayıtları temsili olarak gösterilmiştir.
+      </p>
+    </main>
+  </div>
+</body>
+</html>
