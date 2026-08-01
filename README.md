@@ -39,3 +39,24 @@ Site adresi: **https://bil-495-496-graduation-project.github.io/landing-page/**
 ### Manuel deploy
 
 Actions sekmesinden **Deploy to GitHub Pages** workflow'unu **Run workflow** ile çalıştırabilirsiniz.
+
+
+### Grup Üyeleri
+
+|#|İsim|Bölüm|ID|Email|
+|-|----|-----|--|-----|
+|1|Ahmet Kaan Tırhış| Bilgisayar Mühendisliği|--|--|
+|2|Ataberk Tekin| Bilgisayar Mühendisliği|--|--|
+|3|Mehmet Begun| Bilgisayar Mühendisliği|--|--|
+|4|Osman Kaymakçı| Bilgisayar Mühendisliği|--|--|
+|5|Taha Mert Ağım| Bilgisayar Mühendisliği|--|--|
+
+
+
+
+
+
+
+
+
+
