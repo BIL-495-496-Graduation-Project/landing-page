@@ -1,8 +1,9 @@
 const members = [
-  { name: 'Member Name', role: 'ML Engineer' },
-  { name: 'Member Name', role: 'Backend Developer' },
-  { name: 'Member Name', role: 'Frontend Developer' },
-  { name: 'Member Name', role: 'Data Engineer' },
+  { name: 'Ataberk Tekin', role: 'ML Engineer' },
+  { name: 'Osman Kaymakçı', role: 'Backend Developer' },
+  { name: 'Ahmet Kaan Tırhış', role: 'Frontend Developer' },
+  { name: 'Mehmet Begun', role: 'Data Engineer' },
+  { name: 'Taha Mert Ağım', role: 'Backend Developer'}
 ]
 
 function TeamSection() {
