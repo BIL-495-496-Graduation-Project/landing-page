@@ -26,7 +26,7 @@ npm run build
 
 ## GitHub Pages
 
-Site adresi: **https://bil-495-496-graduation-project.github.io/lazarusfinance.github.io/**
+Site adresi: **https://lazarusfinance.github.io/**
 
 `main` branch'e push edildiğinde GitHub Actions otomatik olarak deploy eder.
 
