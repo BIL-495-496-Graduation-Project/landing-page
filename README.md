@@ -46,7 +46,7 @@ Actions sekmesinden **Deploy to GitHub Pages** workflow'unu **Run workflow** ile
 |#|İsim|Bölüm|ID|Email|
 |-|----|-----|--|-----|
 |1|Ahmet Kaan Tırhış| Bilgisayar Mühendisliği|--|--|
-|2|Ataberk Tekin| Bilgisayar Mühendisliği|--|--|
+|2|Ataberk Tekin| Bilgisayar Mühendisliği|211101060|a.tekin@etu.edu.tr|
 |3|Mehmet Begun| Bilgisayar Mühendisliği|--|--|
 |4|Osman Kaymakçı| Bilgisayar Mühendisliği|--|--|
 |5|Taha Mert Ağım| Bilgisayar Mühendisliği|211101071|tagim@etu.edu.tr|
