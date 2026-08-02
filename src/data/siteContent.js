@@ -60,28 +60,28 @@ export const siteConfig = {
   reports: [
     {
       name: 'Project Proposal',
-      pdf: 'https://drive.google.com/file/d/1KM_fUIHkeib9lZCCMCSVGDYJZKF_NORK/view?usp=sharing',
-      docx: 'https://docs.google.com/document/d/10i-o1QLiRr3oCOsdA1w_HllGR5Kxb1wk/edit?usp=sharing&ouid=101042283378465578099&rtpof=true&sd=true',
+      pdf: 'https://drive.google.com/uc?export=download&id=1KM_fUIHkeib9lZCCMCSVGDYJZKF_NORK',
+      docx: 'https://docs.google.com/document/d/10i-o1QLiRr3oCOsdA1w_HllGR5Kxb1wk/export?format=docx',
     },
     {
       name: 'Project Specifications Report',
-      pdf: 'https://drive.google.com/file/d/1OOTkQJlkIl3B4HRL1kdv6iLEGYo40fxa/view?usp=drive_link',
-      docx: 'https://docs.google.com/document/d/1B8Twz8lZsJXy9p5Y4NM0uuRkT94046R-/edit?usp=drive_link&ouid=101042283378465578099&rtpof=true&sd=true',
+      pdf: 'https://drive.google.com/uc?export=download&id=1OOTkQJlkIl3B4HRL1kdv6iLEGYo40fxa',
+      docx: 'https://docs.google.com/document/d/1B8Twz8lZsJXy9p5Y4NM0uuRkT94046R-/export?format=docx',
     },
     {
       name: 'Analysis Report',
-      pdf: 'https://drive.google.com/file/d/1g0BnyKUhf-Qzjze5nY3prP6ZQkV5-JB0/view?usp=drive_link',
-      docx: 'https://docs.google.com/document/d/1v5fLvTr79lXB-9ippDub-LkXReKtdut9/edit?usp=drive_link&ouid=101042283378465578099&rtpof=true&sd=true',
+      pdf: 'https://drive.google.com/uc?export=download&id=1g0BnyKUhf-Qzjze5nY3prP6ZQkV5-JB0',
+      docx: 'https://docs.google.com/document/d/1v5fLvTr79lXB-9ippDub-LkXReKtdut9/export?format=docx',
     },
     {
       name: 'PKE-Plan',
-      pdf: 'https://drive.google.com/file/d/1vHjstlLSdhx4rVjKJ56DKBMHzfKXTJYH/view?usp=drive_link',
-      docx: 'https://docs.google.com/document/d/1iCDd_bDQFxXxLp95w_-VKcghloN9Rp-j/edit?usp=drive_link&ouid=101042283378465578099&rtpof=true&sd=true',
+      pdf: 'https://drive.google.com/uc?export=download&id=1vHjstlLSdhx4rVjKJ56DKBMHzfKXTJYH',
+      docx: 'https://docs.google.com/document/d/1iCDd_bDQFxXxLp95w_-VKcghloN9Rp-j/export?format=docx',
     },
     {
       name: 'High-Level Design Report',
-      pdf: 'https://drive.google.com/file/d/ORNEK_PDF_ID/view?usp=sharing',
-      docx: 'https://docs.google.com/document/d/1OyX32AQsl6BgBoWxCeLs8AIEoCUtvzBb/edit?usp=drive_link&ouid=101042283378465578099&rtpof=true&sd=true',
+      pdf: null,
+      docx: 'https://docs.google.com/document/d/1OyX32AQsl6BgBoWxCeLs8AIEoCUtvzBb/export?format=docx',
     },
   ],
 }
