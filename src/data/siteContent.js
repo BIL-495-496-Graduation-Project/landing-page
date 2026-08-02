@@ -3,7 +3,7 @@ export const siteConfig = {
   subtitle: 'Yapay Zeka Destekli Finansal Haber Etki Analiz ve Karar Destek Sistemi',
   summary:
     'Ekonomik, finansal ve siyasi haberlerin BIST100, Borsa İstanbul sektör endeksleri ve USD/TRY kuru üzerindeki kısa vadeli etkilerini analiz eden yapay zeka destekli web tabanlı karar destek sistemi.',
-  teamEmail: 'lazarusfinance@etu.edu.tr',
+  teamEmail: 'lazarusfinance.team@gmail.com',
   githubUrl: 'https://github.com/lazarusfinance/lazarusfinance.github.io',
   demoVideoUrl: '',
   demoPreviews: [
@@ -45,14 +45,14 @@ export const siteConfig = {
     email: 'mozbayoglu@etu.edu.tr',
   },
   problem:
-    'Finansal piyasalarda haber akışı hızlı ve hacimlidir; KAP bildirimleri, ekonomik gelişmeler ve siyasi olaylar BIST100, sektör endeksleri ile USD/TRY kuru üzerinde kısa vadede etki yaratabilir. Yatırımcılar ve araştırmacılar bu ilişkileri manuel takip etmekte, haber kaynaklı piyasa hareketlerini zamanında yorumlamakta zorlanmaktadır.',
+    'Finansal piyasalarda haber akışı hızlı ve hacimlidir; KAP bildirimleri, ekonomik gelişmeler ve siyasi olaylar BIST100, Borsa İstanbul sektör endeksleri ile USD/TRY kuru üzerinde kısa vadede etki yaratabilir. Yatırımcılar ve araştırmacılar bu ilişkileri manuel takip etmekte, haber kaynaklı piyasa hareketlerini zamanında yorumlamakta zorlanmaktadır.',
   solution:
-    'LazarusFinance; KAP, finans ve ekonomi haberlerini çeşitli kaynaklardan toplar, FinBERT ve BERT tabanlı modellerle sınıflandırır ve duygu analizi yaparak etki skoru üretir. Haber verilerini Yahoo Finance, KAP ve diğer kaynaklardan elde edilen BIST100, sektör endeksleri, USD/TRY ve altın fiyatlarıyla ilişkilendirerek korelasyon, zaman serisi analizi ve etkileşimli görselleştirmelerle karar destek sunar.',
+    'LazarusFinance; KAP, finans ve ekonomi haberlerini çeşitli kaynaklardan toplar, FinBERT ve BERT tabanlı modellerle sınıflandırır ve duygu analizi yaparak etki skoru üretir. Haber verilerini Yahoo Finance, KAP ve diğer kaynaklardan elde edilen BIST100, Borsa İstanbul sektör endeksleri, USD/TRY ve altın fiyatlarıyla ilişkilendirerek korelasyon, zaman serisi analizi ve etkileşimli görselleştirmelerle karar destek sunar.',
   projectScope: [
     'KAP bildirimleri, finans haberleri ve ekonomik/siyasi gelişmelerden otomatik veri toplama',
     'Ekonomik, finansal ve siyasi haber sınıflandırması',
     'FinBERT ve BERT tabanlı duygu analizi ile etki skoru üretimi',
-    'BIST100, sektör endeksleri ve USD/TRY üzerinde kısa vadeli etki analizi',
+    'BIST100, Borsa İstanbul sektör endeksleri ve USD/TRY üzerinde kısa vadeli etki analizi',
     'Altın fiyatlarının karşılaştırmalı piyasa göstergesi olarak sunumu',
     'Korelasyon, zaman serisi analizi ve haber-etki ilişki haritaları',
     'Etkileşimli dashboard, grafikler ve karar destek özet ekranları',
@@ -118,7 +118,7 @@ export const teamMembers = [
   {
     name: 'Taha Mert Ağım',
     role: '',
-    bio: 'Tobb ETÜ Bilgisayar Mühendisliği son sınıf öğrencisi. Backend ve Veri Analizi tarafından sorumlu.',
+    bio: 'Tobb ETÜ Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Siber Güvenlik alanıyla ilgileniyorum ve gelişmeye açığım.',
     linkedin: 'https://www.linkedin.com/in/taha-mert-a%C4%9F%C4%B1m-6b85b334b/',
     photo: '/team/taha-mert-agim.jpeg',
   },
@@ -141,7 +141,7 @@ export const features = [
     icon: '🤖',
   },
   {
-    title: 'BIST100 ve Sektör Analizi',
+    title: 'BIST100 ve Borsa İstanbul Sektör Analizi',
     desc: 'BIST100 performansını ve Borsa İstanbul sektör endekslerini haber verileriyle birlikte inceler.',
     icon: '📈',
   },
