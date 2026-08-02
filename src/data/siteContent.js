@@ -65,8 +65,8 @@ export const siteConfig = {
     },
     {
     name: 'Project Specifications Report',
-    pdf: 'https://drive.google.com/uc?export=download&id=1OOTkQJlkIl3B4HRL1kdv6iLEGYo40fxa',
-    docx: 'https://docs.google.com/document/d/1B8Twz8lZsJXy9p5Y4NM0uuRkT94046R-/export?format=docx',
+    pdf: 'https://docs.google.com/document/d/1B8Twz8lZsJXy9p5Y4NM0uuRkT94046R-/export?format=pdf',
+    docx: 'https://drive.google.com/uc?export=download&id=1OOTkQJlkIl3B4HRL1kdv6iLEGYo40fxa',
     },
     {
     name: 'Analysis Report',
