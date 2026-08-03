@@ -81,7 +81,7 @@ export const siteConfig = {
     {
       name: 'High-Level Design Report',
       pdf: null,
-      docx: 'https://docs.google.com/document/d/1OyX32AQsl6BgBoWxCeLs8AIEoCUtvzBb/export?format=docx',
+      docx: 'https://docs.google.com/document/d/1mSMDYoSIAAwokO5goH2viyCt3qKbF624/export?format=docx',
     },
   ],
 }
