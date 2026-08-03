@@ -90,7 +90,7 @@ export const teamMembers = [
   {
     name: 'Ataberk Tekin',
     role: '',
-    bio: 'Doğal dil işleme modelleri ve duygu analizi pipeline tasarımından sorumlu.',
+    bio: 'TOBB ETÜ Bilgisayar Mühendisliği 4. Sınıf Öğrencisi | Yapay Zekâ ve NLP | Siber Güvenlik | Yazılım Geliştirme',
     linkedin: 'https://www.linkedin.com/in/ataberktekin',
     photo: '/team/ataberk-tekin.jpeg',
   },
